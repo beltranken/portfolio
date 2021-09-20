@@ -1,0 +1,29 @@
+@import '_colors';
+@import '_sizes';
+@import '_z-index';
+@import '_mixins';
+
+:host {
+    background-color: #f9f9f9;
+}
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: $z-fixed;
+    background-color: #f9f9f9;
+    color: $light-color;
+    box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
+}
+.main {
+    @include base-margin;
+}
+.about, .skills, .experiences, .portfolio, .footer {
+    padding-top: $mb-6;
+}
+.footer {
+    padding-bottom: $mb-4;
+    background-color: $primary-color;
+    color: $light-color;
+}

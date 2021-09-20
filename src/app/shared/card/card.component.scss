@@ -1,0 +1,20 @@
+@import '_colors';
+@import '_sizes';
+@import '_mixins';
+
+.card {
+    display: grid;
+    grid-template-columns: 30% 50%;
+    background-color: $primary-color;
+    border-radius: 5%;
+    min-height: 300px;
+    max-height: 350px;
+    align-items: flex-end;
+    text-align: left;
+    color: $light-color;
+    padding: $mb-4;
+
+    &__icon {
+        
+    }
+}

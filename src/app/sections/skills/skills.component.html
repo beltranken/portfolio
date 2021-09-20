@@ -1,0 +1,8 @@
+<div class="skills-content">
+  <h2 class="skills-content__title section-title"><span class="section-title__text">Skills</span></h2>
+  <div class="skills-content__list">
+    <div *ngFor="let skill of skills" class="skills-content__item">
+      <app-card [skill]="skill"></app-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@import '_sizes';
+@import '_mixins';
+@import '_colors';
+
+.footer-content {
+    text-align: center;
+
+    &__name {
+        letter-spacing: 10px;
+        margin-bottom: $mb-6;
+    }
+    &__links {
+        display: inline-flex;
+        margin-bottom: $mb-4;
+        &__item {
+            display: inline-flex;
+            width: 25px;
+            margin: 0 $mb-2;
+        }
+    }
+}

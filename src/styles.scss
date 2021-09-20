@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+@import '_font';
+@import '_sizes';
+@import '_colors';
+@import '_mixins';
+
+* { 
+  font-family: $font;
+  box-sizing: border-box; 
+}
+html { scroll-behavior: smooth; }
+body {
+  margin: $header-height 0 0 0;
+  font-family: $font;
+  font-size: $normal-font-size;
+  color: $primary-color;
+}
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons--float {
+  &-left {
+    float: left;
+    margin-right: 15px;
+  }
+  &-right {
+    float: right;
+    margin-left: 15px;
+  }
+}
+a {
+  &, &:link, &:visited, &:hover, &:active {
+    text-decoration: none;
+  }
+}
+button { 
+  border: none;;
+  font-size: $normal-font-size;
+  padding: 0; 
+  margin: 0;
+}
+h1,h2,p { margin: 0; }
+h1 { font-size: $h1-font-size }
+h2 { font-size: $h2-font-size }
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+.btn {
+  padding: $mb-2;
+  border-radius: 5%;
+}
+.section-title {
+  text-align: center;
+  margin-top: $mb-2;
+  margin-bottom: $mb-4;
+
+  &__text {
+    text-align: center;
+    @include menu-highlight;
+  }
+}

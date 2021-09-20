@@ -1,0 +1,57 @@
+@import '_sizes';
+@import '_colors';
+@import '_mixins';
+
+.home-content {
+    display: grid;
+    height: $body-height;
+    grid-template-columns: auto;
+    
+    @include for-sm-screen-up {
+        grid-template-columns: auto auto;
+    }
+    &__data {
+        position: relative;
+        align-self: center;
+    }
+    &__tagline {
+        color: $highlight-color;
+        margin-bottom: $mb-2;
+    }
+    &__name {
+        line-height: .9;
+    }
+    &__list {
+        @include list;
+        margin-top: $mb-4;
+    }
+    &__img {
+        overflow-x: hidden;
+        align-self: flex-end;
+        padding: 0 0 0 2rem;
+
+        & > img{
+            min-width: 300px;
+        }
+
+        @include for-tablet-portrait-up {
+            padding: 0 0 15% 4rem;
+        }
+        @include for-lg-screen-up {
+            padding: 0 0 15% 8rem;
+        }
+    }
+    &__links {
+        display: flex;
+        margin-top: $mb-4;
+        &__item {
+            margin-top: $mb-3;
+            margin-right: $mb-4;
+            &--resume {
+                background-color: $highlight-color;
+                color: $light-color;
+                cursor: pointer;
+            }
+        }
+    }
+}
