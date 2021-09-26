@@ -17,13 +17,25 @@
     box-shadow: 0 1px 4px rgb(146 161 176 / 15%);
 }
 .main {
-    @include base-margin;
+    overflow: hidden;
 }
-.about, .skills, .experiences, .portfolio, .footer {
-    padding-top: $mb-6;
+.home, .about, .skills, .portfolio, .contact {
+    @include base-margin;
+    padding-top: $mb-8;
+}
+.experiences {
+    background-color: darken($primary-color, 20%);
+    margin-top: $mb-8;
+    padding: $mb-6 0;
 }
 .footer {
+    margin-top: $mb-8;
+    margin-bottom: $menu-mobile-height;
     padding-bottom: $mb-4;
     background-color: $primary-color;
     color: $light-color;
+    
+    @include for-sm-screen-up {
+        margin-bottom: 0;
+    }
 }

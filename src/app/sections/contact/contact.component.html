@@ -1,0 +1,44 @@
+<div class="contact-content">
+  <h2 class="contact-content__title section-title"><span class="section-title__text">{{title}}</span></h2>
+  <div class="contact-content__inner">
+    <div class="contact-content__desc">
+      <p>Hi,<br>Get in touch!</p>
+      <ul>
+        <li>Send an e-mail: <a href="mailto:beltrankenhenson@gmail.com">beltrankenhenson@gmail.com</a></li>
+        <li>Call or Text: +639474031247</li>
+      </ul>
+      <p>I would love to hear from you.</p>
+    </div>
+    <form [formGroup]="contactForm">
+    <div class="contact-content__form">
+      <div class="contact-content__form__item">
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Name *" formControlName="name">
+        </div>
+      </div>
+      
+      <div class="contact-content__form__item">
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Email *" formControlName="email">
+        </div>
+      </div>
+      
+      <div class="contact-content__form__item">
+        <div class="p-inputgroup">
+            <input type="text" pInputText placeholder="Subject" formControlName="subject">
+        </div>
+      </div>
+      
+      <div class="contact-content__form__item">
+        <div class="p-inputgroup">
+            <textarea pInputTextarea [rows]="5" placeholder="Message *" resize="vertical" formControlName="message"></textarea>
+        </div>
+      </div>
+
+      <div class="contact-content__form__item">
+        <button pButton type="button" label="Send" class="p-button-secondary"></button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>

@@ -3,17 +3,30 @@
 @import '_mixins';
 
 .skills-content {
-    &__list {
-        display: grid;
-        align-items: center;
-        text-align: center;
-        
-        @include for-sm-screen-up {
-            grid-template-columns: auto auto;
-        }
+  &__item {
+    display: flex;
+    align-items: flex-end;
+    //margin: $mb-2 $mb-2;
+    min-height: 200px;
+    max-height: 350px;
+  }
+}
+:host ::ng-deep .p-carousel-content {
+  @include for-lg-screen-up {  
+    .p-carousel-indicators {
+      display: none;
     }
-    &__item {
-        min-height: 300px;
-        padding: $mb-4;
+    .p-carousel-prev, .p-carousel-next {
+      display: none;
     }
+  }
+  .p-carousel-item {
+    padding-left: $mb-2;
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+  .p-card .p-card-body {
+    padding-left: 2rem;
+  }
 }

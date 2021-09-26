@@ -1,8 +1,21 @@
 <div class="skills-content">
-  <h2 class="skills-content__title section-title"><span class="section-title__text">Skills</span></h2>
-  <div class="skills-content__list">
-    <div *ngFor="let skill of skills" class="skills-content__item">
-      <app-card [skill]="skill"></app-card>
-    </div>
+  <h2 class="skills-content__title section-title"><span class="section-title__text">{{title}}</span></h2>
+  <div class="skills-content__list" (swipe)="onSwipe($event)">
+    <p-carousel [value]="skills" [numVisible]="4" [responsiveOptions]="responsiveOptions">
+      <ng-template let-skill pTemplate="item">
+        <p-card>
+          <div class="skills-content__item">
+            <div class="skills-content__item__data">
+              <ul>
+                <li *ngFor="let item of skill.list">
+                  <span>{{item}}</span>
+                </li>
+              </ul>
+              <h2>{{skill.title}}</h2>
+            </div>
+          </div>
+        </p-card>
+      </ng-template>
+    </p-carousel>
   </div>
 </div>

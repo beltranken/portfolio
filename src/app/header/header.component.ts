@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, IsActiveMatchOptions } from '@angular/router';
 
 interface MenuItem {
+  icon: string,
   name: string, 
   link: string, 
   active: boolean
@@ -13,19 +15,20 @@ interface MenuItem {
 })
 export class HeaderComponent implements OnInit {
 
+  isActiveMatchOptions: IsActiveMatchOptions = {paths: 'exact', queryParams: 'ignored', fragment: 'exact', matrixParams: 'ignored'};
   siteLogo: string = 'KEN';
   menuList: Array<MenuItem> = [];
   show: boolean = false;
 
-  constructor() { }
+  constructor(route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const menuList = [
-      {name: 'Home', link: '#home', active: true},
-      {name: 'About', link: '#about', active: false},
-      {name: 'Skills', link: '#skills', active: false},
-      {name: 'Work', link: '#work', active: false},
-      {name: 'Contact', link: '#contact', active: false},
+      {icon: 'home', name: 'Home', link: 'home', active: true},
+      {icon: 'user', name: 'About', link: 'about', active: false},
+      {icon: 'book', name: 'Skills', link: 'skills', active: false},
+      {icon: 'id-card', name: 'Experience', link: 'experiences', active: false},
+      {icon: 'phone', name: 'Contact', link: 'contact', active: false},
     ];
 
     this.menuList = menuList;

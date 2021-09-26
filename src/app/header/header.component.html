@@ -3,18 +3,12 @@
         <a href="" class="main-nav__logo" aria-label="Logo">{{siteLogo}}</a>
     </div>
     
-    <button class="main-nav__toggle" [attr.aria-expanded]="show" aria-label="Open main menu" aria-controls="menu" (click)="toggle(true)">
-        <span class="material-icons" aria-hidden="true">menu</span>
-    </button>
-
-    <div class="main-nav__menu" [class.show]="show" aria-hidden="true">
-        <div class="main-nav__menu__wrapper">
-            <ul class="main-nav__list" id="menu" aria-label="Main Menu">
-                <li *ngFor="let menuItem of menuList" class="main-nav__item"><a href="{{menuItem.link}}" class="main-nav__link" [class.active]="menuItem.active" (click)="selectMenu(menuItem)">{{menuItem.name}}</a></li>
-            </ul>
-            <button class="main-nav__toggle__btn--close" aria-label="Close main menu" aria-controls="menu" (click)="toggle(false)">
-                <span class="material-icons md-36" aria-hidden="true">close</span>
-            </button>
-        </div>
-    </div>
+    <ul class="main-nav__menu" id="menu" aria-label="Main Menu" routerLinkActive="active">
+        <li *ngFor="let menuItem of menuList" class="main-nav__menu__item">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="isActiveMatchOptions" [fragment]="menuItem.link" class="main-nav__menu__link">
+                <span aria-hidden="false" class="pi pi-{{menuItem.icon}} main-nav__menu__icon"></span>
+                <span class="main-nav__menu__title">{{menuItem.name}}</span>
+            </a>
+        </li>
+    </ul>
 </nav>

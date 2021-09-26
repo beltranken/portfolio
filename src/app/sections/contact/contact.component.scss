@@ -1,0 +1,28 @@
+@import '_sizes';
+@import '_mixins';
+
+.contact-content {
+    &__inner {
+        display: grid;
+    }
+    &__desc {
+        padding-right: $mb-2;
+    }
+    &__form {
+        padding-top: $mb-4;
+
+        &__item {
+            margin-bottom: $mb-1;
+        }
+    }
+}
+textarea {
+    resize: vertical;
+}
+@include for-sm-screen-up {
+    .contact-content {
+        &__inner {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}

@@ -6,13 +6,9 @@
     &__data {
         display: grid;
 
-        @include for-sm-screen-up {
-            grid-template-columns: auto auto;
-        }
         &__desc {
-            @include for-sm-screen-up {
-                padding-left: $mb-4;
-            }
+            padding-top: $mb-4;
+ 
             &__text {
                 text-align: justify;
                 margin-top: $mb-2;
@@ -20,6 +16,18 @@
             }
             &__highlight {
                 margin-bottom: $mb-4;
+            }
+        }
+    }
+}
+@include for-sm-screen-up {
+    .about-content {
+        &__data {
+            grid-template-columns: auto auto;
+
+            &__desc {
+                padding-left: $mb-4;
+                padding-top: 0;
             }
         }
     }

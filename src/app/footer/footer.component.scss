@@ -1,21 +1,32 @@
 @import '_sizes';
-@import '_mixins';
 @import '_colors';
+@import '_font';
+@import '_mixins';
 
 .footer-content {
     text-align: center;
-
+    
     &__name {
         letter-spacing: 10px;
+        text-indent: 10px;
         margin-bottom: $mb-6;
     }
     &__links {
-        display: inline-flex;
+        display: flex;
+        justify-content: center;
         margin-bottom: $mb-4;
+
         &__item {
-            display: inline-flex;
-            width: 25px;
-            margin: 0 $mb-2;
+            &:nth-child(1) {
+                margin-right: $mb-1;
+            }
+            &:nth-child(2) {
+                margin-left: $mb-1;
+            }
+            span {
+                color: $light-color;
+                font-size: $large-font-size;
+            }
         }
     }
 }

@@ -1,4 +1,21 @@
-<div class="experiences-content">
-  <h2 class="experiences-content__title section-title"><span class="section-title__text">Experiences</span></h2>
-  
+<div class="experience-content">
+  <h2 class="experience-content__title section-title"><span class="section-title__text">{{title}}</span></h2>
+  <ul class="experience-content__list">
+    <li *ngFor="let experience of experiences" class="experience-content__item">
+      <a href="" class="experience-content__item__link" aria-label="Learn more" (click)="learnMore($event, experience)">
+        <div class="experience-content__item__border"></div>
+        <div class="experience-content__item__wrapper">
+          <p class="experience-content__item__pos">{{experience.pos}}</p>
+          <h3 class="experience-content__item__desc">{{experience.desc}}</h3>
+          <p class="experience-content__item__year">{{experience.year}}</p>
+          <p class="experience-content__item__learn">Learn more</p>
+        </div>
+      </a>
+    </li>
+  </ul>
 </div>
+
+<p-dialog [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '80vw'}" [style]="{width: '50vw'}">
+  <h3>{{selectedExperience.desc}}</h3>
+  <div [innerHtml]="selectedExperience.content"></div>
+</p-dialog>
