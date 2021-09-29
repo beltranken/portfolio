@@ -3,9 +3,9 @@
         <a href="" class="main-nav__logo" aria-label="Logo">{{siteLogo}}</a>
     </div>
     
-    <ul class="main-nav__menu" id="menu" aria-label="Main Menu" routerLinkActive="active">
+    <ul class="main-nav__menu" id="menu" aria-label="Main Menu">
         <li *ngFor="let menuItem of menuList" class="main-nav__menu__item">
-            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="isActiveMatchOptions" [fragment]="menuItem.link" class="main-nav__menu__link">
+            <a href="{{'#' + menuItem.link}}" class="main-nav__menu__link" [class.active]="menuItem.active">
                 <span aria-hidden="false" class="pi pi-{{menuItem.icon}} main-nav__menu__icon"></span>
                 <span class="main-nav__menu__title">{{menuItem.name}}</span>
             </a>

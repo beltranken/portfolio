@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, IsActiveMatchOptions } from '@angular/router';
 
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
   menuList: Array<MenuItem> = [];
   show: boolean = false;
 
-  constructor(route: ActivatedRoute) { }
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
     const menuList = [
@@ -32,19 +33,24 @@ export class HeaderComponent implements OnInit {
     ];
 
     this.menuList = menuList;
+
+    this.location.onUrlChange(url => this.urlChange(url));
   }
 
-  toggle(val: boolean): void {
-    this.show = val;
-  }
-
-  selectMenu(menuItem: MenuItem) {
+  urlChange(url: string): void {
+    const hash = url.substring(2, url.length);
+    let nothing: boolean = true;
     for(let menuItem of this.menuList) {
-      if(menuItem.active) {
+      if(menuItem.link === hash) {
+        menuItem.active = true;
+        nothing = false;
+      } else {
         menuItem.active = false;
-        break;
       }
     }
-    menuItem.active = true;
+
+    if(nothing) {
+      this.menuList[0].active = true;
+    }
   }
 }

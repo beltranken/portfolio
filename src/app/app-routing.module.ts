@@ -4,13 +4,13 @@ import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {path: '', component: AppComponent},
-  {path: '404', component: AppComponent},
-  {path: '**', redirectTo: '404'}
+  {path: '**', redirectTo: ''}
 ];
 
 const routeOptions: ExtraOptions = {
-  useHash: false
-}
+  //anchorScrolling: 'enabled',
+  //useHash: false
+};
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, routeOptions)],

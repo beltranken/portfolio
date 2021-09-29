@@ -1,14 +1,13 @@
-import { Component, OnInit, AfterViewInit, ElementRef, HostListener, ViewChild, ViewChildren } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, AfterViewInit, HostListener, ViewChild, OnDestroy } from '@angular/core';
+import { Location } from '@angular/common';
 import { AboutComponent, ContactComponent, ExperiencesComponent, HomeComponent, SkillsComponent } from './sections';
-import { debounce } from './shared/_helper/debounce.decorator';
 
 @Component({
   selector: '[app-root]',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(HomeComponent) homeElem!: HomeComponent;
   @ViewChild(AboutComponent) aboutElem!: AboutComponent;
   @ViewChild(SkillsComponent) skillsElem!: SkillsComponent;
@@ -16,11 +15,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(ContactComponent) contactElem!: ContactComponent;
 
   positions: Array<{top: any, hash: string}> = [];
+  scrollTimeout: any;
+  isScrolling: boolean = false;
 
-  constructor(private router: Router) { }
+  constructor(private location: Location) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.positions = [
@@ -48,15 +48,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('document:scroll', ['$event'])
-  //@debounce(100)
   scroll(e: Event) {
-    if(window.pageYOffset) {
+    if(window.pageYOffset && !this.isScrolling) {
       for(let position of this.positions) {
         if(window.pageYOffset > position.top.nativeElement.offsetTop-200) {
-          this.router.navigate(['/'], {fragment: position.hash})
+          this.location.go('#'+position.hash);
           break;
         }
       }
     }
+  }
+
+  ngOnDestroy() {
   }
 }
