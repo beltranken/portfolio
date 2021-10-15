@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { Skill } from '../../shared/Skill';
+import { Skill } from '../../shared/models/Skill';
 
 @Component({
   selector: '[app-skills]',

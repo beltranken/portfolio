@@ -6,10 +6,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-
   constructor(public el:ElementRef) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }

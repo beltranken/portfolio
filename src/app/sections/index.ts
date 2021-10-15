@@ -1,4 +1,5 @@
 export { HomeComponent } from './home/home.component';
+export { SnakeComponent } from '../snake/snake.component';
 export { AboutComponent } from './about/about.component';
 export { SkillsComponent } from './skills/skills.component';
 export { ExperiencesComponent } from './experiences/experiences.component';

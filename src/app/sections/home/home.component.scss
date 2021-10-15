@@ -4,27 +4,16 @@
 @import '_mixins';
 
 .home-content {
-    position: relative;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto;
-    
-    @include for-sm-screen-up {
-        grid-template-columns: auto auto;
-    }
+
     &__data {
         position: relative;
         align-self: center;
         z-index: $z-front; 
         margin-top: $mb-8;
         margin-bottom: $mb-8;
-
-        @include for-tablet-portrait-up {
-            align-self: flex-start;
-            margin-top: $mb-4;
-        }
-        @include for-sm-screen-up {
-        }
     }
     &__tagline {
         color: $highlight-color;
@@ -38,30 +27,10 @@
         margin-top: $mb-4;
     }
     &__img {
+        align-self: center;
+        text-align: center;
+        min-height: 350px;
         position: relative;
-        display: block;
-        overflow-x: hidden;
-        align-self: flex-end;
-        padding: 0;
-        margin: 0;
-
-        & > img {
-            min-width: 300px;
-            margin-left: 50%;
-            transform: translateX(-50%);
-        }
-
-        @include for-tablet-portrait-up {
-            margin: 0 $mb-6;
-        }
-        @include for-sm-screen-up {
-            position: relative;
-            margin: 0;
-        }
-        @include for-lg-screen-up {
-            padding: 0 0 0 8rem;
-            margin: 0;
-        }
     }
     &__links {
         display: flex;
@@ -72,6 +41,23 @@
                 color: $light-color;
                 cursor: pointer;
             }
+        }
+    }
+}   
+@include for-tablet-portrait-up {
+    .home-content {
+        &__data {
+            align-self: flex-start;
+            margin-top: $mb-4;
+        }
+    }
+}
+@include for-sm-screen-up {
+    .home-content {
+        grid-template-columns: auto auto;
+
+        &__img {
+            text-align: right;
         }
     }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http'
 
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +14,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { HomeComponent, AboutComponent, SkillsComponent, ExperiencesComponent, ContactComponent } from './sections';
+import { HomeComponent, AboutComponent, SkillsComponent, ExperiencesComponent, ContactComponent, SnakeComponent } from './sections';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     HeaderComponent,
     HomeComponent,
+    SnakeComponent,
     AboutComponent,
     SkillsComponent,
     ExperiencesComponent,
@@ -37,7 +39,12 @@ import { FooterComponent } from './footer/footer.component';
     InputTextModule,
     InputTextareaModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientXsrfModule.withOptions({
+      cookieName: 'XSRF-TOKEN',
+      headerName: 'X-XSRF-TOKEN'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

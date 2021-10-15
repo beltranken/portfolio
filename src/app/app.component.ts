@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { AboutComponent, ContactComponent, ExperiencesComponent, HomeComponent, SkillsComponent } from './sections';
 
@@ -16,11 +16,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   positions: Array<{top: any, hash: string}> = [];
   scrollTimeout: any;
-  isScrolling: boolean = false;
+  isScrolling: boolean = false
 
   constructor(private location: Location) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   ngAfterViewInit() {
     this.positions = [

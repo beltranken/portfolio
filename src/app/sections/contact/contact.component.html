@@ -9,7 +9,7 @@
       </ul>
       <p>I would love to hear from you.</p>
     </div>
-    <form [formGroup]="contactForm">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit($event)">
     <div class="contact-content__form">
       <div class="contact-content__form__item">
         <div class="p-inputgroup">
@@ -25,18 +25,12 @@
       
       <div class="contact-content__form__item">
         <div class="p-inputgroup">
-            <input type="text" pInputText placeholder="Subject" formControlName="subject">
-        </div>
-      </div>
-      
-      <div class="contact-content__form__item">
-        <div class="p-inputgroup">
             <textarea pInputTextarea [rows]="5" placeholder="Message *" resize="vertical" formControlName="message"></textarea>
         </div>
       </div>
 
       <div class="contact-content__form__item">
-        <button pButton type="button" label="Send" class="p-button-secondary"></button>
+        <button pButton type="submit" label="Send" class="p-button-secondary" [disabled]="!contactForm?.valid"></button>
       </div>
     </div>
     </form>

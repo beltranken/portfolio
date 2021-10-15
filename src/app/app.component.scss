@@ -5,6 +5,8 @@
 
 :host {
     background-color: #f9f9f9;
+    position: relative;
+    overflow: hidden;
 }
 .header {
     width: 100%;
@@ -31,7 +33,7 @@
 .footer {
     margin-top: $mb-8;
     margin-bottom: $menu-mobile-height;
-    padding-bottom: $mb-4;
+    padding: $mb-4 0;
     background-color: $primary-color;
     color: $light-color;
     
