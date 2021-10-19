@@ -1,6 +1,9 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, HostListener, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { AboutComponent, ContactComponent, ExperiencesComponent, HomeComponent, SkillsComponent } from './sections';
+import { Position } from './shared/models/Position';
+import { GlobalService } from './shared/services/global.service';
+import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: '[app-root]',
@@ -8,17 +11,18 @@ import { AboutComponent, ContactComponent, ExperiencesComponent, HomeComponent, 
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  @ViewChild(HeaderComponent) headerElem!: HeaderComponent;
   @ViewChild(HomeComponent) homeElem!: HomeComponent;
   @ViewChild(AboutComponent) aboutElem!: AboutComponent;
   @ViewChild(SkillsComponent) skillsElem!: SkillsComponent;
   @ViewChild(ExperiencesComponent) experiencesElem!: ExperiencesComponent;
   @ViewChild(ContactComponent) contactElem!: ContactComponent;
 
-  positions: Array<{top: any, hash: string}> = [];
+  positions: Array<Position> = [];
   scrollTimeout: any;
   isScrolling: boolean = false
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private globalService: GlobalService) { }
 
   ngOnInit() { 
   }
@@ -27,25 +31,32 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.positions = [
       {
         top: this.contactElem.el,
-        hash: 'contact'
+        hash: 'contact', 
+        canvasPosition: this.contactElem.canvasPosition
       },
       {
         top: this.experiencesElem.el,
-        hash: 'experiences'
+        hash: 'experiences', 
+        canvasPosition: this.experiencesElem.canvasPosition
       },
       {
         top: this.skillsElem.el,
-        hash: 'skills'
+        hash: 'skills', 
+        canvasPosition: this.skillsElem.canvasPosition
       },
       {
         top: this.aboutElem.el,
-        hash: 'about'
+        hash: 'about', 
+        canvasPosition: this.aboutElem.canvasPosition
       },
       {
         top: this.homeElem.el,
-        hash: 'home'
+        hash: 'home', 
+        canvasPosition: this.homeElem.canvasPosition
       }
     ];
+
+    this.globalService.positions = this.positions;
   }
 
   @HostListener('document:scroll', ['$event'])

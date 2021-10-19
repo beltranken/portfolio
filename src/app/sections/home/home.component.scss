@@ -24,7 +24,7 @@
     }
     &__list {
         @include list;
-        margin-top: $mb-4;
+        margin-top: $mb-2;
     }
     &__img {
         align-self: center;
@@ -54,7 +54,7 @@
 }
 @include for-sm-screen-up {
     .home-content {
-        grid-template-columns: auto auto;
+        grid-template-columns: 1fr 1fr;
 
         &__img {
             text-align: right;

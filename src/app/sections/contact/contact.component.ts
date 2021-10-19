@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
@@ -8,7 +8,7 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit, OnDestroy {
-
+  @ViewChild('canvasPosition') canvasPosition!: ElementRef;
   title: string = 'Contact';
   contactForm!: FormGroup;
 
@@ -16,9 +16,9 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.contactForm = new FormGroup({
-      name: new FormControl('Ken', [Validators.required, Validators.min(1), Validators.max(50)]),
-      email: new FormControl('beltrankenhenson@gmail.com', [Validators.required, Validators.email]),
-      message: new FormControl('testing only', [Validators.required])
+      name: new FormControl('', [Validators.required, Validators.min(1), Validators.max(50)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      message: new FormControl('', [Validators.required])
     });
   }
 

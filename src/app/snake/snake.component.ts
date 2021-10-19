@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { PositionService } from '../shared/services/position.service';
+import { GlobalService } from '../shared/services/global.service';
 import { Rotating, Lines, TWO_PI, Dots, getTime } from './objects';
 
 @Component({
@@ -11,7 +12,9 @@ import { Rotating, Lines, TWO_PI, Dots, getTime } from './objects';
 export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('snakeCanvas', {static: false}) snakeCanvas!: ElementRef<HTMLCanvasElement>;
 
-  positionSub!: Subscription;
+  activeMenu!: MenuItem;
+
+  subscription!: Subscription;
   requestId: number = 0;
   width: number = 0;
   height: number = 0;
@@ -19,6 +22,7 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
   lastTick: number = 0;
   fpsInterval: number = 0;
   ready: boolean = false;
+  moving: boolean = false;
 
   radius: number = 80;
   speed: number = 0.01;
@@ -33,7 +37,7 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
   linesObj!: Lines;
   dotsObj!: Dots;
 
-  constructor(private position: PositionService) { }
+  constructor(private globalServices: GlobalService) { }
 
   ngOnInit() { }
 
@@ -45,6 +49,14 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.createObjs();
       this.fpsInterval = 1000 / 240;
       this.start();
+
+      this.subscription = this.globalServices.activeMenu.subscribe(menuItem => {
+        if(menuItem.name) {
+          this.activeMenu = menuItem;
+          this.moving = true;
+          this.ready = true;
+        }
+      });
     }
   }
 
@@ -71,23 +83,16 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.context.restore();
   }
 
-  start = () => {
-    if(this.context) {
-      /* this.positionSub = this.position.rect$.subscribe(rect => {
-        if(rect) {
-          this.centerX  = rect.x + window.scrollX + rect.width / 2;
-          this.centerY = rect.y + window.scrollY + rect.height / 2;
-        }
-      }); */
-      
-      const rect = this.context.canvas.getBoundingClientRect();
-      this.width = this.context.canvas.width = rect.width;
-      this.height = this.context.canvas.height = rect.height;
-      this.centerX = this.width / 2;
-      this.centerY = this.height / 2;
-      
-      console.log(rect);
+  setSizes() {
+    this.width = this.context.canvas.width = 500;
+    this.height = this.context.canvas.height = 500;
+    this.centerX = this.width / 2;
+    this.centerY = this.height / 2;
+  }
 
+  start = () => {
+    if(this.context) {  
+      this.setSizes();    
       this.isRunning = true;
       this.requestId = requestAnimationFrame(this.tick);
     }
@@ -113,16 +118,8 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dotsObj = new Dots(this.context, this.radius*2);
   }
 
-  /* doResize!: any;
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.stop();
-    clearTimeout(this.doResize);
-    this.doResize = setTimeout(this.start, 100);
-  } */
-
   ngOnDestroy() {
-    this.positionSub?.unsubscribe();
+    this.subscription?.unsubscribe();
     this.stop();
   }
 }

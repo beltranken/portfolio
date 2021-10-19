@@ -1,10 +1,21 @@
 @import '_sizes';
 
 .snake {
+    display: none;
     position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
+    /* top: 0;
+    bottom: 0;
+    left: $mb-4;
+    right: $mb-4;
+    height: calc(100% - 16rem);
+    width: calc(100% - 8rem); */
     height: 500px;
     width: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &--ready {
+        display: block;
+    }
 }

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Skill } from '../../shared/models/Skill';
 
 @Component({
@@ -7,7 +7,7 @@ import { Skill } from '../../shared/models/Skill';
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent implements OnInit {
-
+  @ViewChild('canvasPosition') canvasPosition!: ElementRef;
   skills:Array<Skill> = [];
   title: string = 'Skills';
   responsiveOptions: Array<any> = [];

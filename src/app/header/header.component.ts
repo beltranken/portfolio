@@ -1,13 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, IsActiveMatchOptions } from '@angular/router';
-
-interface MenuItem {
-  icon: string,
-  name: string, 
-  link: string, 
-  active: boolean
-};
+import { IsActiveMatchOptions } from '@angular/router';
+import { MenuItem } from '../shared/models/MenuItem';
+import { GlobalService } from '../shared/services/global.service';
 
 @Component({
   selector: '[app-header]',
@@ -21,7 +16,7 @@ export class HeaderComponent implements OnInit {
   menuList: Array<MenuItem> = [];
   show: boolean = false;
 
-  constructor(private location: Location) { }
+  constructor(private location: Location, private globalService: GlobalService) { }
 
   ngOnInit(): void {
     const menuList = [
@@ -44,6 +39,7 @@ export class HeaderComponent implements OnInit {
       if(menuItem.link === hash) {
         menuItem.active = true;
         nothing = false;
+        this.globalService.setActiveMenu(menuItem);
       } else {
         menuItem.active = false;
       }

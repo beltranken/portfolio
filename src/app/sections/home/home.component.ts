@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { PositionService } from 'src/app/shared/services/position.service';
 
 @Component({
   selector: '[app-home]',
@@ -9,16 +8,14 @@ import { PositionService } from 'src/app/shared/services/position.service';
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvasPosition') canvasPosition!: ElementRef;
 
-  constructor(public el: ElementRef, private position: PositionService) { }
+  constructor(public el: ElementRef) { }
 
   ngOnInit() {
   }
 
-  ngAfterViewInit() {
-    this.position.setCoordinate(this.canvasPosition.nativeElement.getBoundingClientRect());
-  }
+  ngAfterViewInit() { }
 
   downloadResume() {
-    window.open('assets/file/resume.docx', '_self');
+    
   }
 }

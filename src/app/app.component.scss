@@ -21,7 +21,10 @@
 .main {
     overflow: hidden;
 }
-.home, .about, .skills, .portfolio, .contact {
+.home {
+    @include base-margin;
+}
+.about, .skills, .portfolio, .contact {
     @include base-margin;
     padding-top: $mb-8;
 }
@@ -36,8 +39,12 @@
     padding: $mb-4 0;
     background-color: $primary-color;
     color: $light-color;
-    
-    @include for-sm-screen-up {
+}
+@include for-sm-screen-up {
+    .home {
+        padding-top: $mb-8;
+    }
+    .footer {
         margin-bottom: 0;
     }
 }

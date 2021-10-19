@@ -1,4 +1,4 @@
-<div class="skills-content">
+<div class="skills-content" #canvasPosition>
   <h2 class="skills-content__title section-title"><span class="section-title__text">{{title}}</span></h2>
   <div class="skills-content__list" (swipe)="onSwipe($event)">
     <p-carousel [value]="skills" [numVisible]="4" [responsiveOptions]="responsiveOptions">
