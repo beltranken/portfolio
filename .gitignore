@@ -45,6 +45,6 @@ testem.log
 Thumbs.db
 
 .vscode
-
+.dockerignore
 Dockerfile
 *ts.bak
