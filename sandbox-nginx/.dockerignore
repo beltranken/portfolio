@@ -45,4 +45,6 @@ testem.log
 Thumbs.db
 
 .vscode
+.git
+Dockerfile
 *ts.bak
