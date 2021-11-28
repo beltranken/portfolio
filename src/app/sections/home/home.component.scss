@@ -8,16 +8,36 @@
     grid-template-columns: auto;
     grid-template-rows: auto;
 
+    &[data-out="false"] &__tagline > span::after {
+        clip-path: circle(100%);
+    }
+    &__tagline {
+        color: $highlight-color;
+        margin-bottom: $mb-2;
+
+        > span {
+            position: relative;
+
+            &::after {
+                content: attr(data-text);
+                color: $primary-color;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                left: 0;
+                overflow: hidden;
+                clip-path: circle(0%);
+                transition: clip-path ease-in .5s;
+                white-space: nowrap;
+            }
+        }
+    }
     &__data {
         position: relative;
         align-self: center;
         z-index: $z-front; 
         margin-top: $mb-8;
         margin-bottom: $mb-8;
-    }
-    &__tagline {
-        color: $highlight-color;
-        margin-bottom: $mb-2;
     }
     &__name {
         line-height: .9;
@@ -35,13 +55,7 @@
     &__links {
         display: flex;
         margin-top: $mb-4;
-        &__item {
-            &--resume {
-                background-color: $highlight-color;
-                color: $light-color;
-                cursor: pointer;
-            }
-        }
+        overflow: hidden;
     }
 }   
 @include for-tablet-portrait-up {

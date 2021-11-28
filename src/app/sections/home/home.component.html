@@ -1,15 +1,17 @@
-<div class="home-content">
+<div class="home-content" [attr.data-out]="out">
   <div class="home-content__data">  
-    <h2 class="home-content__tagline">I WRITE CODES.</h2>
+    <h2 class="home-content__tagline">
+      <span class="home-content__tagline__text" [attr.data-text]="tagline">{{tagline}}</span>
+    </h2>
     <h1 class="home-content__name">Ken Henson <br>D. Beltran</h1>
     <ul class="home-content__list">
-      <li class="home-content__item"><p>Innovation is my passion</p></li> 
-      <li class="home-content__item"><p>Versatile programmer who loves learning everything</p></li>
-      <li class="home-content__item"><p>6+ years in creating solutions</p></li>
+      <li class="home-content__item animate__slide" *ngFor="let subTagline of subTaglines">
+        <p><span [class.char]="char != ' '" *ngFor="let char of subTagline.split(''); let i = index" [style]="'--index: '+(subTagline.split('').length - i)">{{char}}</span></p>
+      </li>
     </ul>
     <div class="home-content__links">
       <div>
-        <a href="#contact" pButton type="button" label="Request Resume" class="p-button-secondary"></a>
+        <a href="assets/file/resume.docx" pButton type="button" label="Request Resume" class="p-button-secondary"></a>
       </div>
     </div>
   </div>

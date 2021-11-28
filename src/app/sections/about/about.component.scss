@@ -17,6 +17,9 @@
                 margin-bottom: $mb-4;
             }
         }
+        &__img {
+            margin: auto;
+        }
     }
 }
 @include for-sm-screen-up {

@@ -10,7 +10,7 @@
 }
 html { scroll-behavior: smooth; }
 body {
-  margin: $header-height 0 0 0;
+  margin: 0;
   font-family: $font;
   font-size: $normal-font-size;
   color: $primary-color;
@@ -79,5 +79,20 @@ img {
   &:enabled:hover {
     background-color: $primary-color;
     border: 1px solid $primary-color;
+  }
+}
+
+/** animations **/
+.char {
+  display: inline-block;
+}
+.animate {
+  &__slide .char {
+    transition: ease-in-out .3s transform, ease-in-out .01s opacity;
+    transition-delay: calc(var(--index) * .02s);
+  }
+  [data-out="false"] &__slide .char {
+    transform: translateX(-600%) skew(20deg);
+    opacity: 0;
   }
 }

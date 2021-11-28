@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { GlobalService } from 'src/app/shared/services/global.service';
 
 @Component({
   selector: '[app-home]',
@@ -8,14 +9,30 @@ import { Component, ElementRef, OnInit, ViewChild, AfterViewInit } from '@angula
 export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('canvasPosition') canvasPosition!: ElementRef;
 
-  constructor(public el: ElementRef) { }
+  out: boolean;
+  tagline: string;
+  subTaglines: Array<string>;
 
-  ngOnInit() {
+  constructor(public el: ElementRef, private globalService: GlobalService) { 
+    this.out = false;
+    this.tagline = 'I WRITE CODES.';
+    this.subTaglines = [
+      'Innovation is my passion',
+      'Codes are running through my veins',
+      '6+ years in creating solutions'
+    ];
   }
 
-  ngAfterViewInit() { }
+  ngOnInit() { 
+    this.globalService.setCurrSection('home');
+  }
 
-  downloadResume() {
-    
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.globalService.section.subscribe(data => {
+        if(data === 'home') this.out = true;
+        else this.out = false;
+      });
+    }, 0);
   }
 }

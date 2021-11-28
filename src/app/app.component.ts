@@ -4,6 +4,7 @@ import { AboutComponent, ContactComponent, ExperiencesComponent, HomeComponent, 
 import { Position } from './shared/models/Position';
 import { GlobalService } from './shared/services/global.service';
 import { HeaderComponent } from './header/header.component';
+import { debounce } from './shared/_helper/debounce.decorator';
 
 @Component({
   selector: '[app-root]',
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   positions: Array<Position> = [];
   scrollTimeout: any;
   isScrolling: boolean = false
+  curr: string = '';
 
   constructor(private location: Location, private globalService: GlobalService) { }
 
@@ -59,12 +61,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.globalService.positions = this.positions;
   }
 
-  @HostListener('document:scroll', ['$event'])
+  @HostListener('window:scroll', ['$event'])
   scroll(e: Event) {
     if(window.pageYOffset && !this.isScrolling) {
       for(let position of this.positions) {
-        if(window.pageYOffset > position.top.nativeElement.offsetTop-200) {
+        if(window.pageYOffset >= position.top.nativeElement.offsetTop) {
           this.location.go('#'+position.hash);
+          this.globalService.setCurrSection(position.hash);
           break;
         }
       }

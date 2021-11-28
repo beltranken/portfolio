@@ -11,9 +11,13 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class GlobalService implements OnDestroy {
   positions: Array<Position> = [];
-  activeMenu: BehaviorSubject<MenuItem> = new BehaviorSubject({} as MenuItem);
+  activeMenu: BehaviorSubject<MenuItem>;
+  section: BehaviorSubject<string>;
 
-  constructor() { }
+  constructor() { 
+    this.section = new BehaviorSubject('home');
+    this.activeMenu = new BehaviorSubject({} as MenuItem);
+  }
 
   setActiveMenu(activeMenu: MenuItem) {
     if(activeMenu.name !== this.activeMenu.value.name){
@@ -25,7 +29,12 @@ export class GlobalService implements OnDestroy {
     return this.positions.find(position => position.hash === name);
   }
 
+  setCurrSection(url: string) {
+    this.section.next(url);
+  }
+
   ngOnDestroy() {
     this.activeMenu.complete();
+    this.section.complete();
   }
 }

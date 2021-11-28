@@ -21,7 +21,7 @@ export class SnakeComponent implements OnInit, AfterViewInit, OnDestroy {
   context!: CanvasRenderingContext2D;
   lastTick: number = 0;
   fpsInterval: number = 0;
-  ready: boolean = false;
+  ready: boolean = true;
   moving: boolean = false;
 
   radius: number = 80;

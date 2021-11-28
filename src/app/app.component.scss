@@ -23,6 +23,7 @@
 }
 .home {
     @include base-margin;
+    padding-top: $header-height;
 }
 .about, .skills, .portfolio, .contact {
     @include base-margin;
